@@ -18,14 +18,6 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(sa|sc|c)ss$/,
-                use: [
-                    {loader: 'css-loader', options: {sourceMap: true}},
-                    {loader: 'postcss-loader', options: {sourceMap: true}},
-                    {loader: 'sass-loader', options: {sourceMap: true}},
-                ],
-            },
-            {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                 type: 'asset/resource',
             },
@@ -35,9 +27,14 @@ module.exports = {
             },
         ],
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     output: {
         path: path.resolve(__dirname, '..', './build'),
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
     },
     plugins: [
         new HtmlWebpackPlugin({

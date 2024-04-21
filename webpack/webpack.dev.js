@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 module.exports = {
@@ -7,11 +6,21 @@ module.exports = {
     devServer: {
         hot: true,
         open: true,
+        port: 3000,
     },
     plugins: [
         new ReactRefreshWebpackPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.name': JSON.stringify('Vishwas'),
-        }),
     ],
+    module: {
+        rules: [
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    { loader: 'css-loader', options: { sourceMap: true } },
+                    { loader: 'postcss-loader', options: { sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } },
+                ],
+            },
+        ],
+    },
 }
