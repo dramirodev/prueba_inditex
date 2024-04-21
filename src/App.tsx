@@ -1,4 +1,4 @@
-import "./scss/styles.css";
+import "./scss/styles.scss";
 
 function App() {
   return <h1 className={"hello"}>Hello World</h1>;
