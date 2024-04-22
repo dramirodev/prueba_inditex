@@ -1,7 +1,12 @@
 import "./scss/styles.scss";
+import styled from "styled-components";
+
+const H1 = styled.h1`
+  color: blueviolet;
+`;
 
 function App() {
-  return <h1 className={"hello"}>Hello World</h1>;
+  return <H1>Hello World</H1>;
 }
 
 export default App;

@@ -40,7 +40,7 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-build/
+.build/**/*
 
 # Dependency directories
 node_modules/
@@ -243,3 +243,4 @@ fabric.properties
 !.idea/runConfigurations
 
 # End of https://www.toptal.com/developers/gitignore/api/react,webstorm+all,node
+/build/
