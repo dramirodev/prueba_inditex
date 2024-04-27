@@ -1,8 +1,12 @@
+import { useGetPodcasts } from "../hooks/useGetPodcasts";
+
 export function HomePage() {
+  const { data } = useGetPodcasts();
+
   return (
     <div>
       <h1>Home Page</h1>
-      <p>Welcome to the home page.</p>
+      <code>{JSON.stringify(data, null, 2)}</code>
     </div>
   );
 }
