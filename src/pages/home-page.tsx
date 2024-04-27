@@ -1,4 +1,4 @@
-import { useGetPodcasts } from "../hooks/useGetPodcasts";
+import { useGetPodcasts } from "../api/podcatsts/hooks/useGetPodcasts";
 
 export function HomePage() {
   const { data } = useGetPodcasts();
