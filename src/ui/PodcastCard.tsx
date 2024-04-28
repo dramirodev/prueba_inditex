@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 export const CardImage = styled.img`
   border-radius: 50%;
+  border: 1px solid lightgrey;
   position: absolute;
   width: 100px;
   top: -50px;
@@ -21,6 +22,7 @@ export const CardContainer = styled.div`
   width: 150px;
   border-radius: 10px;
   margin-bottom: 50px;
+  cursor: pointer;
 `;
 
 export const CardTitle = styled.h2`
