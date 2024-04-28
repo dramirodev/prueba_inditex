@@ -10,12 +10,12 @@ type PodcastCardProps = {
   name: string;
   artist: string;
   image: string;
-  id: string;
+  id?: string;
 };
 
-export function PodcastCard({ id, name, image, artist }: PodcastCardProps) {
+export function PodcastCard({ name, image, artist }: PodcastCardProps) {
   return (
-    <CardContainer key={id}>
+    <CardContainer>
       <CardImage src={image} alt={name} />
       <CardDescription>
         <CardTitle>{name}</CardTitle>
