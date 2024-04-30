@@ -6,13 +6,14 @@ import { SearchBar } from "../../components/search-bar";
 export function HomePage() {
   const { data, setFilterTerm } = useGetPodcasts();
 
+  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFilterTerm(e.target.value);
+  };
+
   return (
     <>
       <SearchBar>
-        <input
-          onChange={(e) => setFilterTerm(e.target.value)}
-          placeholder="Filter podcasts..."
-        />
+        <input onChange={handleOnchange} placeholder="Filter podcasts..." />
       </SearchBar>
       <FeedContainer>
         {data?.feed.entry.map((entry) => (

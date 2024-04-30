@@ -1,29 +1,21 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getPodcasts } from "../podcasts";
 import { Podcasts } from "../../../types";
-import { useCallback, useState } from "react";
-import { getPredicate } from "./lib";
+import { useCallback, useMemo, useState } from "react";
+import { filterByTerm } from "./lib";
 
 export function useGetPodcasts() {
   const [term, setTerm] = useState<string | null>(null);
 
   const initialData = useQueryClient().getQueryData<Podcasts>(["podcasts"]);
 
-  const filterByTerm = useCallback(
-    (data: Podcasts) => {
-      const dummyData = { ...data };
-      dummyData.feed.entry = term
-        ? dummyData?.feed.entry.filter(getPredicate(term))
-        : initialData?.feed.entry || [];
-      return dummyData;
-    },
-    [term, initialData]
-  );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const x = useCallback(filterByTerm(term), [term]);
   const { data, isLoading, isError } = useQuery<Podcasts>({
     queryKey: term ? ["podcasts", term] : ["podcasts"],
     queryFn: getPodcasts,
     retry: 2,
-    select: filterByTerm,
+    select: x,
     initialData,
   });
 
@@ -31,5 +23,8 @@ export function useGetPodcasts() {
     setTerm(term);
   }, []);
 
-  return { data, isLoading, isError, setFilterTerm };
+  return useMemo(
+    () => ({ data, isLoading, isError, setFilterTerm }),
+    [data, isLoading, isError, setFilterTerm]
+  );
 }
