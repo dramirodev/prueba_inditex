@@ -1,10 +1,10 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getPodcasts } from "../podcasts";
+import { getPodcastFeed } from "../podcasts";
 import { Podcasts } from "../../../types";
 import { useCallback, useMemo, useState } from "react";
 import { filterByTerm } from "./lib";
 
-export function useGetPodcasts() {
+export function useGetPodcastFeed() {
   const [term, setTerm] = useState<string | null>(null);
 
   const initialData = useQueryClient().getQueryData<Podcasts>(["podcasts"]);
@@ -13,7 +13,7 @@ export function useGetPodcasts() {
   const x = useCallback(filterByTerm(term), [term]);
   const { data, isLoading, isError } = useQuery<Podcasts>({
     queryKey: term ? ["podcasts", term] : ["podcasts"],
-    queryFn: getPodcasts,
+    queryFn: getPodcastFeed,
     retry: 2,
     select: x,
     initialData,
