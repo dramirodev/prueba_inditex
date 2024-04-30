@@ -2,6 +2,7 @@ import { useGetPodcastFeed } from "../../api/podcatsts/hooks/useGetPodcastFeed";
 import { FeedContainer } from "../../ui";
 import { PodcastCard } from "../../components/card/PodcastCard";
 import { SearchBar } from "../../components/search-bar";
+import { Layout } from "../../components/layout/layout";
 
 export function HomePage() {
   const { data, setFilterTerm } = useGetPodcastFeed();
@@ -11,7 +12,7 @@ export function HomePage() {
   };
 
   return (
-    <>
+    <Layout>
       <SearchBar>
         <input onChange={handleOnchange} placeholder="Filter podcasts..." />
       </SearchBar>
@@ -26,6 +27,8 @@ export function HomePage() {
           />
         ))}
       </FeedContainer>
-    </>
+    </Layout>
   );
 }
+
+export default HomePage;
