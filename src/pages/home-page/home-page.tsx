@@ -1,8 +1,8 @@
 import { useGetPodcastFeed } from "../../api/podcatsts/hooks/useGetPodcastFeed";
 import { FeedContainer } from "../../ui";
-import { PodcastCard } from "../../components/card/PodcastCard";
 import { SearchBar } from "../../components/search-bar";
 import { Layout } from "../../components/layout/layout";
+import { PodcastFeed } from "../../components/podcast-feed/podcast-feed";
 
 export function HomePage() {
   const { data, setFilterTerm } = useGetPodcastFeed();
@@ -16,17 +16,7 @@ export function HomePage() {
       <SearchBar>
         <input onChange={handleOnchange} placeholder="Filter podcasts..." />
       </SearchBar>
-      <FeedContainer>
-        {data?.feed.entry.map((entry) => (
-          <PodcastCard
-            name={entry["im:name"].label}
-            artist={entry["im:artist"].label}
-            image={entry["im:image"][2].label}
-            key={entry.id.attributes["im:id"]}
-            id={entry.id.attributes["im:id"]}
-          />
-        ))}
-      </FeedContainer>
+      <FeedContainer>{data?.feed.entry.map(PodcastFeed)}</FeedContainer>
     </Layout>
   );
 }
