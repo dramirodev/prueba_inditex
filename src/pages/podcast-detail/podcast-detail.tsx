@@ -1,12 +1,15 @@
 import { Layout } from "../../components/layout/layout";
-import useGetPodcastById from "../../api/podcatsts/hooks/useGetPodcastById";
+import useGetEpisodesByPodcastId from "../../api/podcatsts/hooks/useGetEpisodesByPodcastId";
 import { useParams } from "react-router-dom";
 
 export function PodcastDetail() {
   const { id } = useParams();
-  const { data } = useGetPodcastById(id);
+  const { data, podcast } = useGetEpisodesByPodcastId(id);
+
+  console.log({ podcast });
   return (
     <Layout>
+      <p>{podcast?.summary.label}</p>
       <code>{JSON.stringify(data)}</code>
     </Layout>
   );

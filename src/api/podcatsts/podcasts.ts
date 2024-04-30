@@ -5,7 +5,7 @@ export const getPodcastFeed = async () => {
   return await response.json();
 };
 
-export const getPodcastById = async (podcastId = "") => {
+export const getEpisodesPodcastById = async (podcastId = "") => {
   const response = await fetch(PODCASTS_URLS.getPodcastEpisodes(podcastId));
   return await response.json();
 };
