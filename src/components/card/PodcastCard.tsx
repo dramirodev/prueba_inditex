@@ -13,7 +13,11 @@ type PodcastCardProps = {
   id?: string;
 };
 
-export function PodcastCard({ name, image, artist }: PodcastCardProps) {
+export function PodcastCard({
+  name,
+  image,
+  artist,
+}: Readonly<PodcastCardProps>) {
   return (
     <CardContainer>
       <CardImage src={image} alt={name} />
