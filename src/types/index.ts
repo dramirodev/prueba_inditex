@@ -43,7 +43,7 @@ export type Category = {
 
 export type CategoryAttributes = {
   "im:id": string;
-  term: PurpleLabel;
+  term: string;
   scheme: string;
   label: PurpleLabel;
 };

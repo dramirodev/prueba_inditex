@@ -28,7 +28,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools />
       <Layout>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </Layout>
     </QueryClientProvider>
   );
