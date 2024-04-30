@@ -1,10 +1,10 @@
-import { useGetPodcasts } from "../../api/podcatsts/hooks/useGetPodcasts";
+import { useGetPodcastFeed } from "../../api/podcatsts/hooks/useGetPodcastFeed";
 import { FeedContainer } from "../../ui";
 import { PodcastCard } from "../../components/card/PodcastCard";
 import { SearchBar } from "../../components/search-bar";
 
 export function HomePage() {
-  const { data, setFilterTerm } = useGetPodcasts();
+  const { data, setFilterTerm } = useGetPodcastFeed();
 
   const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilterTerm(e.target.value);
