@@ -4,22 +4,23 @@ import { getEpisodesPodcastById } from "../podcasts";
 import { useMemo } from "react";
 
 export default function useGetEpisodesByPodcastId(podcastId?: string) {
-  //TODO: find a best way to return podcast data
   const feed = useQueryClient().getQueryData<Podcasts>(["podcasts"]);
-
-  const podcast = useMemo(
-    () =>
-      feed?.feed.entry.find(
-        (podcast: Entry) => podcast.id.attributes["im:id"] === podcastId
-      ),
-    [podcastId]
-  );
-
-  const { data, isError, isLoading } = useQuery<Feed>({
-    queryKey: ["podcast", podcastId],
+  const { data, isError, isLoading } = useQuery<Feed & { podcast?: Entry }>({
+    queryKey: podcastId ? ["podcast", podcastId] : ["podcast"],
     queryFn: () => getEpisodesPodcastById(podcastId),
     retry: 2,
     enabled: !!podcastId,
+    meta: { podcastId },
+    select: (data) => {
+      const podcast = feed?.feed.entry.find(
+        (podcast: Entry) => podcast.id.attributes["im:id"] === podcastId
+      );
+
+      return {
+        ...data,
+        podcast,
+      };
+    },
   });
 
   return useMemo(
@@ -27,8 +28,7 @@ export default function useGetEpisodesByPodcastId(podcastId?: string) {
       data,
       isError,
       isLoading,
-      podcast,
     }),
-    [data, isError, isLoading, podcast]
+    [data, isError, isLoading]
   );
 }

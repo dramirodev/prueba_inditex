@@ -4,12 +4,10 @@ import { useParams } from "react-router-dom";
 
 export function PodcastDetail() {
   const { id } = useParams();
-  const { data, podcast } = useGetEpisodesByPodcastId(id);
-
-  console.log({ podcast });
+  const { data } = useGetEpisodesByPodcastId(id);
   return (
     <Layout>
-      <p>{podcast?.summary.label}</p>
+      <p>{data?.podcast?.summary.label}</p>
       <code>{JSON.stringify(data)}</code>
     </Layout>
   );
