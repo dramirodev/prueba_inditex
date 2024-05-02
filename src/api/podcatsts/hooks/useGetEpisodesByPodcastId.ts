@@ -10,7 +10,6 @@ export default function useGetEpisodesByPodcastId(podcastId?: string) {
   return useQuery<Feed & { podcast: Entry }>({
     queryKey: podcastId ? ["podcast", podcastId] : ["podcast"],
     queryFn: () => getEpisodesPodcastById(podcastId),
-    retry: 2,
     enabled: !!podcastId,
     select: (data) => {
       return {

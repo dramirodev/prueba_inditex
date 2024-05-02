@@ -5,8 +5,9 @@ import {
   CardSubTitle,
   CardTitle,
   PodcastDescriptioner,
-} from "../../ui/PodcastCard";
+} from "../../ui/podcast-card";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 type PodcastCardProps = {
   name: string;
@@ -16,6 +17,13 @@ type PodcastCardProps = {
   description?: string;
 };
 
+const LinkContainer = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export function PodcastCard({
   name,
   image,
@@ -24,9 +32,9 @@ export function PodcastCard({
   description,
 }: Readonly<PodcastCardProps>) {
   return (
-    <Link to={`/podcast/${id}`}>
+    <LinkContainer to={`/podcast/${id}`}>
+      <CardImage src={image} alt={name} />
       <CardContainer>
-        <CardImage src={image} alt={name} />
         <CardDescription>
           <CardTitle>{name}</CardTitle>
           <CardSubTitle>{artist}</CardSubTitle>
@@ -35,6 +43,6 @@ export function PodcastCard({
           )}
         </CardDescription>
       </CardContainer>
-    </Link>
+    </LinkContainer>
   );
 }

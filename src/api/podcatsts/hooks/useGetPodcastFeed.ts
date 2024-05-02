@@ -14,7 +14,6 @@ export function useGetPodcastFeed() {
   const { data, isLoading, isError } = useQuery<Podcasts>({
     queryKey: term ? ["podcasts", term] : ["podcasts"],
     queryFn: getPodcastFeed,
-    retry: 2,
     select: filterTerm,
     initialData,
   });

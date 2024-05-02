@@ -1,13 +1,11 @@
 import styled from "styled-components";
 
-// TODO: Change unit to rem
-
 export const CardImage = styled.img`
   border-radius: 50%;
   border: 1px solid lightgrey;
-  position: absolute;
   width: 100px;
   top: -50px;
+  z-index: 1;
 `;
 
 export const CardContainer = styled.div`
@@ -15,14 +13,13 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 20px;
   border: 1px solid lightgrey;
   min-height: 150px;
-  max-width: 150px;
+  width: 150px;
   border-radius: 10px;
-  margin-bottom: 50px;
   cursor: pointer;
+  margin-top: -50px;
 `;
 
 export const CardTitle = styled.h2`
@@ -49,6 +46,7 @@ export const CardDescription = styled.div`
   align-content: flex-start;
   justify-content: center;
   width: 90%;
+  margin-top: 50px;
 
   p {
     margin: 0;
