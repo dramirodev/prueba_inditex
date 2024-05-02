@@ -10,12 +10,12 @@ export function useGetPodcastFeed() {
   const initialData = useQueryClient().getQueryData<Podcasts>(["podcasts"]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const x = useCallback(filterByTerm(term), [term]);
+  const filterTerm = useCallback(filterByTerm(term), [term]);
   const { data, isLoading, isError } = useQuery<Podcasts>({
     queryKey: term ? ["podcasts", term] : ["podcasts"],
     queryFn: getPodcastFeed,
     retry: 2,
-    select: x,
+    select: filterTerm,
     initialData,
   });
 

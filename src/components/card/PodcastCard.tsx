@@ -4,6 +4,7 @@ import {
   CardImage,
   CardSubTitle,
   CardTitle,
+  PodcastDescriptioner,
 } from "../../ui/PodcastCard";
 import { Link } from "react-router-dom";
 
@@ -29,8 +30,10 @@ export function PodcastCard({
         <CardDescription>
           <CardTitle>{name}</CardTitle>
           <CardSubTitle>{artist}</CardSubTitle>
+          {description && (
+            <PodcastDescriptioner>{description}</PodcastDescriptioner>
+          )}
         </CardDescription>
-        {description && <p>{description}</p>}
       </CardContainer>
     </Link>
   );

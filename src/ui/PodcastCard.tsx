@@ -49,4 +49,19 @@ export const CardDescription = styled.div`
   align-content: flex-start;
   justify-content: center;
   width: 90%;
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    text-align: center;
+    white-space: normal;
+  }
+`;
+
+export const PodcastDescriptioner = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  margin-top: 20px;
+  font-size: 0.8rem;
 `;
