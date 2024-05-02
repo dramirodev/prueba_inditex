@@ -18,8 +18,8 @@ export const CardContainer = styled.div`
   justify-content: center;
   padding: 20px;
   border: 1px solid lightgrey;
-  height: 150px;
-  width: 150px;
+  min-height: 150px;
+  max-width: 150px;
   border-radius: 10px;
   margin-bottom: 50px;
   cursor: pointer;

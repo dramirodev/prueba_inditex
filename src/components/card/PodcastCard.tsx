@@ -12,6 +12,7 @@ type PodcastCardProps = {
   artist: string;
   image: string;
   id?: string;
+  description?: string;
 };
 
 export function PodcastCard({
@@ -19,6 +20,7 @@ export function PodcastCard({
   image,
   artist,
   id,
+  description,
 }: Readonly<PodcastCardProps>) {
   return (
     <Link to={`/podcast/${id}`}>
@@ -28,6 +30,7 @@ export function PodcastCard({
           <CardTitle>{name}</CardTitle>
           <CardSubTitle>{artist}</CardSubTitle>
         </CardDescription>
+        {description && <p>{description}</p>}
       </CardContainer>
     </Link>
   );
