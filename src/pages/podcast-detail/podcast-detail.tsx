@@ -2,7 +2,7 @@ import { Layout } from "../../components/layout/layout";
 import useGetEpisodesByPodcastId from "../../api/podcatsts/hooks/useGetEpisodesByPodcastId";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { PodcastCard } from "../../components/card/PodcastCard";
+import { PodcastCard } from "../../components/card/podcast-card";
 
 const Container = styled.div`
   display: grid;

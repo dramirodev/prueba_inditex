@@ -1,5 +1,5 @@
 import { Entry } from "../../types";
-import { PodcastCard } from "../card/PodcastCard";
+import { PodcastCard } from "../card/podcast-card";
 
 export function PodcastFeed(entry: Readonly<Entry>) {
   return (
