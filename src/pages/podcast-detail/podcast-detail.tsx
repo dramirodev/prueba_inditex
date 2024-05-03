@@ -3,6 +3,10 @@ import useGetEpisodesByPodcastId from "../../api/podcatsts/hooks/useGetEpisodesB
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { PodcastCard } from "../../components/card/podcast-card";
+import {
+  DateTimeFromIso,
+  DurationFromMillisecondsToMinutes,
+} from "../../lib/date";
 
 const Container = styled.div`
   display: grid;
@@ -33,7 +37,6 @@ const PodcastHeader = styled.div`
 `;
 
 const PodcastEpisodes = styled.div`
-  background-color: #f5d79a;
   grid-row-start: 2;
   grid-column-start: 3;
   grid-row-end: 5;
@@ -60,9 +63,39 @@ export function PodcastDetail() {
           )}
         </PodcastDescription>
         <PodcastHeader>
-          Episodes {episodesQuery?.data?.entry?.length ?? 0}
+          Episodes {episodesQuery?.data?.resultCount ?? 0}
         </PodcastHeader>
-        <PodcastEpisodes>episodes</PodcastEpisodes>
+        <PodcastEpisodes>
+          <ul>
+            <li
+              style={{
+                display: "grid",
+                gridTemplateColumns: "3fr 1fr 1fr",
+                gap: "20px",
+              }}
+            >
+              <div>Title</div>
+              <div>Date</div>
+              <div>Duration</div>
+            </li>
+            {episodesQuery?.data?.results?.map((episode) => (
+              <li
+                key={episode.trackId}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "3fr 1fr 1fr",
+                  gap: "20px",
+                }}
+              >
+                <div>{episode.trackName}</div>
+                <div>{DateTimeFromIso(episode.releaseDate.toString())}</div>
+                <div>
+                  {DurationFromMillisecondsToMinutes(episode.trackTimeMillis)}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </PodcastEpisodes>
       </Container>
     </Layout>
   );
