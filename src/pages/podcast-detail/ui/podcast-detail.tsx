@@ -36,7 +36,6 @@ export const PodcastEpisodes = styled.div`
 `;
 
 export const PodcastEpisodesList = styled.ul`
-  padding: 20px;
   border: 1px solid lightgrey;
   border-radius: 10px;
 `;
@@ -46,7 +45,7 @@ export const PodcastEpisodesListItem = styled.li`
   grid-template-columns: 3fr 1fr 1fr;
   gap: 20px;
   border-bottom: 1px solid lightgrey;
-  padding: 10px 0;
+  padding: 10px;
   font-size: 0.8rem;
   cursor: pointer;
 
