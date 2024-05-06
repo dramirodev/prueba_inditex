@@ -23,6 +23,7 @@ export function PodcastDetail() {
             />
           )}
         </PodcastDescription>
+
         <Outlet />
       </Container>
     </Layout>

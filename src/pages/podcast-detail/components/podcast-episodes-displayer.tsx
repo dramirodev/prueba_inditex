@@ -8,12 +8,17 @@ import {
   DateTimeFromIso,
   DurationFromMillisecondsToMinutes,
 } from "../../../lib/date";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useGetEpisodesByPodcastId from "../../../api/podcatsts/hooks/useGetEpisodesByPodcastId";
 
 export default function PodcastEpisodesDisplayer() {
   const { id } = useParams();
   const episodesQuery = useGetEpisodesByPodcastId(id);
+  const navigate = useNavigate();
+
+  const navegateToEpisode = (episodeId: number) => {
+    navigate(`/podcast/${id}/episode/${episodeId}`);
+  };
 
   return (
     <>
@@ -28,7 +33,10 @@ export default function PodcastEpisodesDisplayer() {
             <div>Duration</div>
           </PodcastEpisodesListItem>
           {episodesQuery?.data?.results?.map((episode) => (
-            <PodcastEpisodesListItem key={episode.trackId}>
+            <PodcastEpisodesListItem
+              key={episode.trackId}
+              onClick={() => navegateToEpisode(episode.trackId)}
+            >
               <div>{episode.trackName}</div>
               <div>{DateTimeFromIso(episode.releaseDate.toString())}</div>
               <div>

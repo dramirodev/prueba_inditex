@@ -15,4 +15,7 @@ export const PageContainer = styled.section`
   padding: 40px 60px;
   align-items: center;
   justify-content: center;
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
 `;

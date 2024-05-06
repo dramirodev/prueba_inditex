@@ -25,7 +25,7 @@ export const CardContainer = styled.div`
 export const CardTitle = styled.h2`
   font-size: 1rem;
   margin: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-overflow: ellipsis;
   overflow: hidden;
 `;

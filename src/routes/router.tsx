@@ -10,6 +10,10 @@ const PodcastEpisodesDisplayer = lazy(
   () => import("../pages/podcast-detail/components/podcast-episodes-displayer")
 );
 
+const PodcastEpisodesDetail = lazy(
+  () => import("../pages/podcast-detail/components/episodes-detail")
+);
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -32,6 +36,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<div>Loading...</div>}>
             <PodcastEpisodesDisplayer />
+          </Suspense>
+        ),
+      },
+      {
+        path: ":id/episode/:episodeId",
+        element: (
+          <Suspense fallback={<div>Loading...</div>}>
+            <PodcastEpisodesDetail />
           </Suspense>
         ),
       },
