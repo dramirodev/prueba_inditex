@@ -21,8 +21,6 @@ export default function PodcastEpisodesDetail() {
   const { id, episodeId } = useParams();
   const episodesQuery = useGetEpisodesByPodcastId(id);
 
-  console.log(id, episodeId);
-
   const episode = useMemo(
     () =>
       episodesQuery?.data?.results?.find(
@@ -34,6 +32,15 @@ export default function PodcastEpisodesDetail() {
   return (
     episode?.description && (
       <Container>
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <audio controls>
+          <source
+            src={episode.episodeUrl}
+            type={`${episode.episodeContentType}/${episode.episodeFileExtension}`}
+          />
+          {/*<source src={} type="audio/mpeg" />*/}
+          Your browser does not support the audio element.
+        </audio>
         <div dangerouslySetInnerHTML={{ __html: episode.description }} />
       </Container>
     )
