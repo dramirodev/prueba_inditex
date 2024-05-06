@@ -1,13 +1,8 @@
 import { Layout } from "../../components/layout/layout";
 import useGetEpisodesByPodcastId from "../../api/podcatsts/hooks/useGetEpisodesByPodcastId";
-import { useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { PodcastCard } from "../../components/card/podcast-card";
-import {
-  Container,
-  PodcastDescription,
-  PodcastHeader,
-} from "./ui/podcast-detail";
-import { PodcastEpisodesDisplayer } from "./components/podcast-episodes-displayer";
+import { Container, PodcastDescription } from "./ui/podcast-detail";
 
 export function PodcastDetail() {
   const { id } = useParams();
@@ -28,10 +23,7 @@ export function PodcastDetail() {
             />
           )}
         </PodcastDescription>
-        <PodcastHeader>
-          Episodes {episodesQuery?.data?.resultCount ?? 0}
-        </PodcastHeader>
-        <PodcastEpisodesDisplayer episodes={episodesQuery?.data?.results} />
+        <Outlet />
       </Container>
     </Layout>
   );

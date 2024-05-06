@@ -2,38 +2,42 @@ import {
   PodcastEpisodes,
   PodcastEpisodesList,
   PodcastEpisodesListItem,
+  PodcastHeader,
 } from "../ui/podcast-detail";
 import {
   DateTimeFromIso,
   DurationFromMillisecondsToMinutes,
 } from "../../../lib/date";
-import { Episode } from "../../../types";
+import { useParams } from "react-router-dom";
+import useGetEpisodesByPodcastId from "../../../api/podcatsts/hooks/useGetEpisodesByPodcastId";
 
-type PodcastEpisodesDisplayerProps = {
-  episodes?: Episode[];
-};
+export default function PodcastEpisodesDisplayer() {
+  const { id } = useParams();
+  const episodesQuery = useGetEpisodesByPodcastId(id);
 
-export function PodcastEpisodesDisplayer({
-  episodes,
-}: Readonly<PodcastEpisodesDisplayerProps>) {
   return (
-    <PodcastEpisodes>
-      <PodcastEpisodesList>
-        <PodcastEpisodesListItem>
-          <div>Title</div>
-          <div>Date</div>
-          <div>Duration</div>
-        </PodcastEpisodesListItem>
-        {episodes?.map((episode) => (
-          <PodcastEpisodesListItem key={episode.trackId}>
-            <div>{episode.trackName}</div>
-            <div>{DateTimeFromIso(episode.releaseDate.toString())}</div>
-            <div>
-              {DurationFromMillisecondsToMinutes(episode.trackTimeMillis)}
-            </div>
+    <>
+      <PodcastHeader>
+        Episodes {episodesQuery?.data?.resultCount ?? 0}
+      </PodcastHeader>
+      <PodcastEpisodes>
+        <PodcastEpisodesList>
+          <PodcastEpisodesListItem>
+            <div>Title</div>
+            <div>Date</div>
+            <div>Duration</div>
           </PodcastEpisodesListItem>
-        ))}
-      </PodcastEpisodesList>
-    </PodcastEpisodes>
+          {episodesQuery?.data?.results?.map((episode) => (
+            <PodcastEpisodesListItem key={episode.trackId}>
+              <div>{episode.trackName}</div>
+              <div>{DateTimeFromIso(episode.releaseDate.toString())}</div>
+              <div>
+                {DurationFromMillisecondsToMinutes(episode.trackTimeMillis)}
+              </div>
+            </PodcastEpisodesListItem>
+          ))}
+        </PodcastEpisodesList>
+      </PodcastEpisodes>
+    </>
   );
 }
