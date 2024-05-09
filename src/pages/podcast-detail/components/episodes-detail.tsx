@@ -38,7 +38,6 @@ export default function PodcastEpisodesDetail() {
             src={episode.episodeUrl}
             type={`${episode.episodeContentType}/${episode.episodeFileExtension}`}
           />
-          {/*<source src={} type="audio/mpeg" />*/}
           Your browser does not support the audio element.
         </audio>
         <div dangerouslySetInnerHTML={{ __html: episode.description }} />
